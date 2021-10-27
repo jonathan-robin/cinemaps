@@ -1,0 +1,10 @@
+.result-autocompletion--codePostal{
+    background:white;
+    color:black;
+}
+.result-autocompletion--codePostal{ 
+    cursor:pointer;
+    &:hover{ 
+        background:rgb(175, 174, 174);
+    }
+}

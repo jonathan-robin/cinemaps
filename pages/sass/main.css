@@ -12135,6 +12135,19 @@ legend {
           justify-content: center;
 }
 
+.result-autocompletion--codePostal {
+  background: white;
+  color: black;
+}
+
+.result-autocompletion--codePostal {
+  cursor: pointer;
+}
+
+.result-autocompletion--codePostal:hover {
+  background: #afaeae;
+}
+
 .container__adresses {
   display: -ms-grid !important;
   display: grid !important;

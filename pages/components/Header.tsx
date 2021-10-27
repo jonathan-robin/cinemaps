@@ -20,8 +20,10 @@ function Header() {
             </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Features</a>
-              </li>
+            <Link href="/Autocompletion">
+                <a className="nav-link" href="#">AutoComplétion adresse</a>
+             </Link>
+                </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">Pricing</a>
               </li>
