@@ -1,0 +1,13 @@
+.container__adresses{
+    display:grid !important; 
+    grid-template-columns: repeat(auto-fill, 400px);
+    margin-inline:auto;
+    justify-content:center;
+}
+#map{ 
+    height:400px !important; 
+    width:800px !important;
+    position:relative;
+    margin-inline:auto; 
+    margin-block:30px;
+}

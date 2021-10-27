@@ -12134,4 +12134,23 @@ legend {
       -ms-flex-pack: center;
           justify-content: center;
 }
+
+.container__adresses {
+  display: -ms-grid !important;
+  display: grid !important;
+  -ms-grid-columns: (400px)[auto-fill];
+      grid-template-columns: repeat(auto-fill, 400px);
+  margin-inline: auto;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#map {
+  height: 400px !important;
+  width: 800px !important;
+  position: relative;
+  margin-inline: auto;
+  margin-block: 30px;
+}
 /*# sourceMappingURL=main.css.map */

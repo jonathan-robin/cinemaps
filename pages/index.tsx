@@ -10,7 +10,6 @@ const Home: NextPage = () => {
   const inputRef = useRef<HTMLInputElement>(null); 
   const router = useRouter();
 
-
   useEffect(() => {
       inputRef.current?.focus()
   },[])

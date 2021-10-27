@@ -9,10 +9,6 @@ function useAxios() {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
         }
-//    {        Content-Type: 'text/event-stream',
-//         ache-Control: 'no-cache'
-//             Connection: 'keep-alive'
-//             X-Accel-Buffering: 'no',}
     })
 
     return instance;
