@@ -1,41 +1,9 @@
-import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import useAxios from '../hooks/useAxios';
 import Header from '../components/Header';
-import { Loader } from "@googlemaps/js-api-loader"
-
-export interface responseAdresses{
-    properties:responseAdressesProperties, 
-    geometry:responseAdressesGeometry
-}
-
-export interface responseAdressesProperties{
-    city:string, 
-    citycode:string, 
-    context: string
-    housenumber: string
-    id: string
-    importance:number
-    label: string
-    name: string
-    postcode:string
-    score: number
-    street:string
-    type:string
-    x:number
-    y:number
-}
-
-export interface responseAdressesGeometry{
-    type:string, 
-    coordinates:number[]
-}
-
-export interface positions{ 
-    lat:number, 
-    lng:number
-}
+import {responseAdresses} from '../interfaces/interfaces';
+import fetchGoogleMapsAdresses from '../utils/FetchGoogleMapsAdresses';
 
 function Adress({response_adress}:InferGetStaticPropsType<typeof getStaticProps>) {
     var response_adresses:responseAdresses[] = [];
@@ -43,36 +11,9 @@ function Adress({response_adress}:InferGetStaticPropsType<typeof getStaticProps>
         response_adresses.push(feature);
     })
 
-    console.log(response_adress)
-    console.log(response_adresses)
-    var positions:positions[] = response_adresses.map((adress, index) => { 
-        let position:positions={lat:0, lng:0};
-        position.lat = adress.geometry.coordinates[1]; 
-        position.lng = adress.geometry.coordinates[0];
-        return position;
-    })
-
-    const loader = new Loader({
-        apiKey: "AIzaSyBSDVQSUseV6HHZF6YLG4YfmsBPA0sA4qw",
-        version: "weekly",
-      });
-
-      let map: google.maps.Map;
-      let markers:google.maps.Marker[];
-      
-      loader.load().then(() => {
-        map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-          center: { lng:positions[0].lng, lat: positions[0].lat },
-          zoom: 8,
-        });
-        markers = positions.map((position, index) => {
-            return new google.maps.Marker({
-                position: position,
-                map,
-                title: `position ${index}`,
-              }); 
-        })
-      });
+    useEffect(() => { 
+        fetchGoogleMapsAdresses(response_adresses);
+    },[])
 
     return (
         <body>
