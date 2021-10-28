@@ -12,7 +12,7 @@ function Cinema() {
     const [geo, setGeo] = useState<positions>()
     const router= useRouter();
     // Rayon de la recherche de cinema en mètre
-    var query:string='2000';
+    var query:string='3000';
 
     useEffect(() => {
         inputRef.current?.focus();

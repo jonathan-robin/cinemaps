@@ -1,20 +1,28 @@
 import React, { useEffect } from 'react'
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
-import useAxios from '../hooks/useAxios';
 import Header from '../components/utils/Header';
 import fetchGoogleMapsAdresses from '../utils/FetchGoogleMapsAdresses';
+import { positions } from '../interfaces/interfaces';
+import { useRouter } from 'next/router';
 
-function Cinema({response_adress}:InferGetStaticPropsType<typeof getStaticProps>) {
+function Cinema({response_adress, userAdress}:InferGetStaticPropsType<typeof getStaticProps>) {
     var response_cinemas:any = [];
+    const router = useRouter();
     // zoom de googleMaps
     const zoom = 12;
     response_adress.records.map((feature:any, index:number) => { 
         response_cinemas.push(feature);
     })
-    
+    console.log(response_cinemas)
     useEffect(() => { 
         fetchGoogleMapsAdresses(response_cinemas, zoom);
     },[])
+
+    // on push [trajet] avec coordonnées du user et du cinema cliqué
+    const handleOnClick = async (cinemaAdress:number[], userAdress:positions) => {
+        router.push({pathname:`/cinema/trajet/${cinemaAdress}%2C+${userAdress.lng},${userAdress.lat}`})
+    }
+
 
     return (
         <body>
@@ -22,10 +30,13 @@ function Cinema({response_adress}:InferGetStaticPropsType<typeof getStaticProps>
         <div>
             <Header />
                 <div id="map"></div>
+                <h3 className='CardClic'>Cliquez sur une card pour avoir accès à l'itinéraire</h3>
             <div className="container__adresses">
         {response_cinemas.map((cinema:any, index:any)=>{
           return (
-            <div className="card text-white bg-primary mb-3" style={{maxWidth:'20rem'}}>
+            //   OnClick renvoit l'itinéraire
+            <div className="card text-white bg-primary mb-3 cardCinema" style={{maxWidth:'20rem'}}
+            onClick={() => handleOnClick(cinema.geometry.coordinates, userAdress)}>
               <div className="card-header">{cinema.fields.adresse}</div>
               <div className="card-body">
                 <h4 className="card-title">{cinema.fields.commune}</h4>
@@ -60,11 +71,15 @@ export const getStaticPaths:GetStaticPaths = async (context) => {
 export const getStaticProps:GetStaticProps = async (context) => {
     // Query = lat+lng de l'adresse select + distance du rayon de recherche
     let query = context?.params?.cinema;
+    let queryToString:string=query? query.toString() : '0';
+    let userAdress:positions={lat:queryToString ? parseFloat(queryToString.split(',+')[0]) : 0 ,
+                                lng:queryToString ? parseFloat(queryToString.split(',+')[1]) : 0};
     const props = await fetch(`https://data.iledefrance.fr/api/records/1.0/search/?dataset=les_salles_de_cinemas_en_ile-de-france&q=&facet=dep&facet=tranche_d_entrees&facet=ae&facet=multiplexe&facet=pdm_en_entrees_des_films_americains&facet=ecrans&facet=fauteuils&facet=geo&geofilter.distance=${query}`)
     const data = await props.json()
     return {
         props:{ 
-            response_adress: data
+            response_adress: data, 
+            userAdress
         }
     }
 }

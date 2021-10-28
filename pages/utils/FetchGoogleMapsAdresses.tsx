@@ -1,6 +1,8 @@
 import React from 'react'; 
 import {positions, responseAdresses, } from '../interfaces/interfaces';
-import { Loader } from "@googlemaps/js-api-loader"
+import { Loader } from "@googlemaps/js-api-loader"; 
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 function fetchGoogleMapsAdresses(response_adresses:responseAdresses[], zoom:number) {
 
@@ -12,7 +14,7 @@ function fetchGoogleMapsAdresses(response_adresses:responseAdresses[], zoom:numb
     })
 
     const loader = new Loader({
-        apiKey: "AIzaSyBSDVQSUseV6HHZF6YLG4YfmsBPA0sA4qw",
+        apiKey:process.env.API_KEY_GOOGLEMAPS?process.env.API_KEY_GOOGLEMAPS:'',
         version: "weekly",
       });
 

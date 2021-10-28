@@ -51,13 +51,9 @@ function Autocompletion() {
               iure similique sapiente eligendi ut. Corrupti sapiente placeat
               dolorum accusamus dolorem tempore sed labore velit. Enim?
             </p>
-
             <CodePostalAutoCompletion codePostal={codePostal} setCodePostal={setCpVille} />
-
             <VilleAutoCompletion setVille={setVilleCp} ville={ville} />
-
             <AdresseAutoCompletion setAdresse={setAdresseVilleCp} postcode={codePostal} adresse={adresse}/>
-
           </div>
         </div>
       </div>

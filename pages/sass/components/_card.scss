@@ -6,3 +6,17 @@
     margin-inline:auto;
     justify-content: center;
 }
+.cardCinema{ 
+    cursor:pointer;
+    &:hover{ 
+        background:green !important; 
+    }
+}
+.CardClic{ 
+    padding:25px; 
+    margin-inline:auto;
+}
+.trajet{
+    display:flex;
+    padding:25px;
+}

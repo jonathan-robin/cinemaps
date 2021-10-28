@@ -12135,6 +12135,26 @@ legend {
           justify-content: center;
 }
 
+.cardCinema {
+  cursor: pointer;
+}
+
+.cardCinema:hover {
+  background: green !important;
+}
+
+.CardClic {
+  padding: 25px;
+  margin-inline: auto;
+}
+
+.trajet {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 25px;
+}
+
 .result-autocompletion--codePostal {
   background: white;
   color: black;

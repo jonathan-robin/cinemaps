@@ -12,6 +12,7 @@ function Adress({response_adress}:InferGetStaticPropsType<typeof getStaticProps>
         response_adresses.push(feature);
     })
 
+
     useEffect(() => { 
         fetchGoogleMapsAdresses(response_adresses, zoom);
     },[])
