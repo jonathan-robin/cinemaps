@@ -1,7 +1,4 @@
-import useAxios from '../hooks/useAxios'; 
-
 function HandleClickFetchData(props:{adress:string, router:any}) {
-    const instance = useAxios();
     // formatte l'url de la requête 
     var adress_request:string = "?q=" + props.adress;
 

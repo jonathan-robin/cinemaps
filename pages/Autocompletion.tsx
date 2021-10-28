@@ -5,11 +5,7 @@ import VilleAutoCompletion from './components/autcompletion/VilleAutoCompletion'
 import Header from './components/utils/Header';
 
 function Autocompletion() {
-    const [inputCodePostalValue, setinputCodePostalValue] = useState<string>();
-    const [inputCityValue, setinputCityValue] = useState<string>('');
-    const [inputAdressValue, setinputAdressValue] = useState<string>('');
     const inputRef = useRef<HTMLInputElement>(null); 
-
     const [codePostal, setCodePostal] = useState<string>()
     const [ville, setVille] = useState<string>()
     const [cpVille, setCpVille] = useState<string>(''); 

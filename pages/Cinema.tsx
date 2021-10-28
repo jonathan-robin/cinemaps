@@ -1,65 +1,42 @@
+import { useRouter } from 'next/router';
 import React,{useState, useEffect,useRef, ChangeEvent} from 'react'
 import Header from './components/utils/Header'; 
-import { positions,responseAdressesProperties, responseAdresses,responseAdressesGeometry} from './interfaces/interfaces';
-// export interface responseAdresses{
-//     properties:responseAdressesProperties, 
-//     geometry:responseAdressesGeometry
-// }
-
-// export interface responseAdressesProperties{
-//     city:string, 
-//     citycode:string, 
-//     context: string
-//     housenumber: string
-//     id: string
-//     importance:number
-//     label: string
-//     name: string
-//     postcode:string
-//     score: number
-//     street:string
-//     type:string
-//     x:number
-//     y:number
-// }
-
-// export interface responseAdressesGeometry{
-//     type:string, 
-//     coordinates:number[]
-// }
-
-// export interface positions{ 
-//     lat:number, 
-//     lng:number
-// }
+import { positions, adresseInfos} from './interfaces/interfaces';
+import HandleClickFetchCinema from './utils/HandleClickFetchCinema';
 
 function Cinema() {
     const inputRef = useRef<HTMLInputElement>(null); 
-    const [inputValue, setInputValue] = useState<string>();
+    const [adresse, setAdresse] = useState<string>();
     const [displayAdress, setDisplayAdresse] = useState<boolean>(false);
-    const [options, setOptions] = useState<string[] | undefined>([])
+    const [options, setOptions] = useState<adresseInfos[] | undefined>([]);
+    const [geo, setGeo] = useState<positions>()
+    const router= useRouter();
+    // Rayon de la recherche de cinema en mètre
+    var query:string='2000';
 
     useEffect(() => {
         inputRef.current?.focus();
     },[])
 
     const handleChangeInputValue = async (e: ChangeEvent<HTMLInputElement>) => { 
-        // fetch api completion q = e.currentTarget.value 
         let q = e.currentTarget.value
-        //  code insee = context.split(',')[0] - Recherche par code insee 75,
-        setInputValue(e.currentTarget.value);
+        setAdresse(e.currentTarget.value);
+        // Recup les options pour le completion de l'adresse
         const p = await fetch(`https://api-adresse.data.gouv.fr/search/?q=${q}&city=paris`)
         const res = await p.json(); 
-        var adresses: any = [];
-        // todo: push uniquement une fois le meme postcode
+        var adresses: adresseInfos[] = [];
         const res_1 =
           (await res) &&
+          // on push adresse complete avec lat/lng dans les options du completion
           res.features.map((item: any, index: any) => {
-            // on push le cp/ville/adresse dans les options du completion
             adresses.push({
               adresse: item.properties.name,
               postcode: item.properties.postcode,
               city: item.properties.city,
+              geo:{
+                  lat:item.geometry.coordinates[0],
+                  lng:item.geometry.coordinates[1]
+              }
             });
           });
         (await res_1) && setOptions(adresses);
@@ -67,19 +44,13 @@ function Cinema() {
     }
 
     const handleClickButton = async () => { 
-        // Récupérer responseAdresses de l'adresse
-        // Extraire les coordinates de responseAdressesGeometry
-        // coordinates[0] = positions.lat, coordinates[1] = positions.lng
-        let pos:positions;
-        // Faire une query avec la lat et la long
-        let query='';
-        const p = await fetch('https://data.iledefrance.fr/api/records/1.0/search/?dataset=les_salles_de_cinemas_en_ile-de-france&q=&facet=dep&facet=tranche_d_entrees&facet=ae&facet=multiplexe&facet=pdm_en_entrees_des_films_americains&facet=ecrans&facet=fauteuils&facet=geo&geofilter.distance=2.40%2C+48.88%2C+2500')
-        const res = await p.json(); 
-        console.log(res);
+        HandleClickFetchCinema(geo, query, router);
     }
 
     const handleClickAdresse = (e:any) =>{ 
-
+        setGeo({lat: e.currentTarget.id.split(' ')[0], lng: e.currentTarget.id.split(' ')[1]}); 
+        setAdresse(e.currentTarget.innerHTML)
+        setDisplayAdresse(false); 
     }
 
     return (
@@ -99,14 +70,14 @@ function Cinema() {
             </p>
 
             <div>
-      <input type="text" value={inputValue} ref={inputRef} onChange={handleChangeInputValue}/>
+      <input type="text" value={adresse} ref={inputRef} onChange={handleChangeInputValue}/>
 
       {displayAdress && (
         <div className="result-autocompletion--codePostal">
           {options?.map((v: any, i) => {
             return (
               <div
-                id={`${v.postcode} ${v.city}`}
+                id={`${v.geo.lat} ${v.geo.lng}`}
                 key={i}
                 onClick={(event) => handleClickAdresse(event)}
                 className="result-autocompletion--codePostal"

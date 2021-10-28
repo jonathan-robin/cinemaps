@@ -29,3 +29,13 @@ export interface positions{
     lat:number, 
     lng:number
 }
+
+export interface adresseInfos{
+    adresse:string, 
+    postcode:string,
+    city:string, 
+    geo:{ 
+        lat:number, 
+        lng:number
+    }
+}
