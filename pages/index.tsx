@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import "bootswatch/dist/cyborg/bootstrap.min.css";
-import Header from "./components/Header";
+import Header from "./components/utils/Header";
 import { useState, useEffect, useRef, ChangeEvent} from "react";
 import HandleClickFetchData from "./utils/HandleClickFetchData";
 import { useRouter } from "next/router";
@@ -35,15 +35,14 @@ const Home: NextPage = () => {
           alt="Card image cap"
         />
         <div className="card-body">
-          <h5 className="card-title">Fetch Adress</h5>
+          <h5 className="card-title">Retrouvez une adresse</h5>
           <p className="card-text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
-            iure similique sapiente eligendi ut. Corrupti sapiente placeat
-            dolorum accusamus dolorem tempore sed labore velit. Enim?
+            Rentrez une adresse approximative "rue des licornes" et retrouvez les cinqs résultats les plus pertinents
+            ainsi que leur localisation sur la carte. 
           </p>
           <input type="text" value={inputValue} ref={inputRef} onChange={handleChangeInputValue}/>
           <button type="button" onClick={handleClickButton} className="btn btn-fetch-data btn-primary">
-            Fetch the data
+            Rechercher
           </button>
         </div>
       </div>

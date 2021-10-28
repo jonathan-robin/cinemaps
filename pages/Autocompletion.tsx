@@ -2,7 +2,7 @@ import React,{useRef, useState, useEffect, ChangeEvent} from 'react';
 import AdresseAutoCompletion from './components/autcompletion/AdresseAutoCompletion';
 import CodePostalAutoCompletion from './components/autcompletion/CodePostalAutoCompletion';
 import VilleAutoCompletion from './components/autcompletion/VilleAutoCompletion';
-import Header from './components/Header';
+import Header from './components/utils/Header';
 
 function Autocompletion() {
     const [inputCodePostalValue, setinputCodePostalValue] = useState<string>();
@@ -33,18 +33,11 @@ function Autocompletion() {
       setAdresse('')
     },[villeCp])
 
-    useEffect(( )=> { 
+    useEffect(() => { 
       setCodePostal(adresseVilleCp[0]); 
       setVille(adresseVilleCp[1])
+      setAdresse(adresseVilleCp[2])
     },[adresseVilleCp])
-
-
-    const handleChangeAdressValue = (e:ChangeEvent<HTMLInputElement>) => {
-        setinputAdressValue(e.currentTarget.value)
-    }
-
-    const handleClickButton = () => { 
-    }
 
     return (
         <div>
@@ -68,24 +61,7 @@ function Autocompletion() {
             <VilleAutoCompletion setVille={setVilleCp} ville={ville} />
 
             <AdresseAutoCompletion setAdresse={setAdresseVilleCp} postcode={codePostal} adresse={adresse}/>
-            {/* <p className="card-text">
-                Code postal
-                <input type="text" onClick={() => setDisplayCodePostal(!displayCodePostal)} ref={inputRef} value={codePostal} onChange={handleChangeInputCodePostalValue}/>
-                {displayCodePostal && 
-                <div className="result-autocompletion--codePostal">
-                    {options.map((v,i) => { 
-                        return <div key={i} onClick={(event) => handleClickCodePostal(event)} className="result-autocompletion--codePostal">
-                          {v}
-                        </div>
-                    })
-                  }
-                  </div>
-                }
-            </p> */}
 
-            <button type="button" onClick={handleClickButton} className="btn btn-fetch-data btn-primary">
-              Fetch the data
-            </button>
           </div>
         </div>
       </div>

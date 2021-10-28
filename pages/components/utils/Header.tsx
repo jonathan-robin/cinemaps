@@ -14,7 +14,7 @@ function Header() {
             <ul className="navbar-nav me-auto">
               <li className="nav-item">
             <Link href="/">
-                <a className="nav-link active">Home
+                <a className="nav-link active">Rechercher une adresse
                   <span className="visually-hidden">(current)</span>
                 </a>
             </Link>
@@ -25,7 +25,9 @@ function Header() {
              </Link>
                 </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Pricing</a>
+            <Link href="/Cinema">
+                <a className="nav-link" href="#">Rechercher les cinemas</a>
+             </Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">About</a>

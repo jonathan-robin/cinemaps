@@ -19,9 +19,11 @@ function fetchGoogleMapsAdresses(response_adresses:responseAdresses[]) {
       let map: google.maps.Map;
       let markers:google.maps.Marker[];
       
-
+      console.log(positions[0].lng, positions[0].lat)
+      
       loader.load().then(() => {
         map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
+        
           center: { lng:positions[0].lng, lat: positions[0].lat },
           zoom: 8,
         });

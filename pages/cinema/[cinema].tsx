@@ -5,7 +5,7 @@ import Header from '../components/utils/Header';
 import {responseAdresses} from '../interfaces/interfaces';
 import fetchGoogleMapsAdresses from '../utils/FetchGoogleMapsAdresses';
 
-function Adress({response_adress}:InferGetStaticPropsType<typeof getStaticProps>) {
+function Cinema({response_adress}:InferGetStaticPropsType<typeof getStaticProps>) {
     var response_adresses:responseAdresses[] = [];
     response_adress.features.map((feature:any, index:number) => { 
         response_adresses.push(feature);
@@ -70,4 +70,4 @@ export const getStaticProps:GetStaticProps = async (context) => {
 }
 
 
-export default Adress
+export default Cinema
