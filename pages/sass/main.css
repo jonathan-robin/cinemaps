@@ -12168,6 +12168,44 @@ legend {
   background: #afaeae;
 }
 
+.trajet-container {
+  background-color: white;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-inline: auto;
+  margin-block: 50px;
+  border-radius: 5px;
+  -webkit-box-shadow: 2px 2px 5px #666666;
+          box-shadow: 2px 2px 5px #666666;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.trajet-container:hover {
+  background-color: green;
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+
+.trajet-horaire {
+  font-size: 1.5em;
+}
+
+.colorLine {
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.sections {
+  padding: 15px;
+}
+
+.section {
+  padding-block: 10px;
+  display: block !important;
+}
+
 .container__adresses {
   display: -ms-grid !important;
   display: grid !important;

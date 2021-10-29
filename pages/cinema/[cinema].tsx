@@ -4,6 +4,7 @@ import Header from '../components/utils/Header';
 import fetchGoogleMapsAdresses from '../utils/FetchGoogleMapsAdresses';
 import { positions } from '../interfaces/interfaces';
 import { useRouter } from 'next/router';
+import GoogleMap from '../GoogleMap';
 
 function Cinema({response_adress, userAdress}:InferGetStaticPropsType<typeof getStaticProps>) {
     var response_cinemas:any = [];
@@ -15,7 +16,7 @@ function Cinema({response_adress, userAdress}:InferGetStaticPropsType<typeof get
     })
     console.log(response_cinemas)
     useEffect(() => { 
-        fetchGoogleMapsAdresses(response_cinemas, zoom);
+        fetchGoogleMapsAdresses(response_cinemas, zoom, 'Adresse', null);
     },[])
 
     // on push [trajet] avec coordonnées du user et du cinema cliqué
@@ -29,7 +30,8 @@ function Cinema({response_adress, userAdress}:InferGetStaticPropsType<typeof get
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
         <div>
             <Header />
-                <div id="map"></div>
+            <GoogleMap />
+                {/* <div id="map"></div> */}
                 <h3 className='CardClic'>Cliquez sur une card pour avoir accès à l'itinéraire</h3>
             <div className="container__adresses">
         {response_cinemas.map((cinema:any, index:any)=>{
