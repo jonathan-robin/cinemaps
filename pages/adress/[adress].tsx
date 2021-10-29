@@ -5,6 +5,7 @@ import Header from '../components/utils/Header';
 import {responseAdresses} from '../interfaces/interfaces';
 import fetchGoogleMapsAdresses from '../utils/FetchGoogleMapsAdresses';
 import GoogleMap from '../GoogleMap';
+import HeaderBack from '../components/utils/HeaderBack';
 
 function Adress({response_adress}:InferGetStaticPropsType<typeof getStaticProps>) {
     var response_adresses:responseAdresses[] = [];
@@ -12,7 +13,6 @@ function Adress({response_adress}:InferGetStaticPropsType<typeof getStaticProps>
     response_adress.features.map((feature:any, index:number) => { 
         response_adresses.push(feature);
     })
-
 
     useEffect(() => { 
         fetchGoogleMapsAdresses(response_adresses, zoom, 'Adresse', null);
@@ -22,9 +22,8 @@ function Adress({response_adress}:InferGetStaticPropsType<typeof getStaticProps>
         <body>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
         <div>
-            <Header />
+            <HeaderBack />
             <GoogleMap />
-                {/* <div id="map"></div> */}
             <div className="container__adresses">
         {response_adresses.map((adress:any, index:any)=>{
           return (

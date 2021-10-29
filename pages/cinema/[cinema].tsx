@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import Header from '../components/utils/Header';
+import HeaderBack from '../components/utils/HeaderBack';
 import fetchGoogleMapsAdresses from '../utils/FetchGoogleMapsAdresses';
 import { positions } from '../interfaces/interfaces';
 import { useRouter } from 'next/router';
@@ -14,7 +15,6 @@ function Cinema({response_adress, userAdress}:InferGetStaticPropsType<typeof get
     response_adress.records.map((feature:any, index:number) => { 
         response_cinemas.push(feature);
     })
-    console.log(response_cinemas)
     useEffect(() => { 
         fetchGoogleMapsAdresses(response_cinemas, zoom, 'Adresse', null);
     },[])
@@ -24,14 +24,12 @@ function Cinema({response_adress, userAdress}:InferGetStaticPropsType<typeof get
         router.push({pathname:`/cinema/trajet/${cinemaAdress}%2C+${userAdress.lng},${userAdress.lat}`})
     }
 
-
     return (
         <body>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
         <div>
-            <Header />
+            <HeaderBack />
             <GoogleMap />
-                {/* <div id="map"></div> */}
                 <h3 className='CardClic'>Cliquez sur une card pour avoir accès à l'itinéraire</h3>
             <div className="container__adresses">
         {response_cinemas.map((cinema:any, index:any)=>{
@@ -43,7 +41,7 @@ function Cinema({response_adress, userAdress}:InferGetStaticPropsType<typeof get
               <div className="card-body">
                 <h4 className="card-title">{cinema.fields.commune}</h4>
                 <p className="card-text">{cinema.fields.nom}</p>
-                <p className="card-text">Distance : {cinema.fields.dist}</p>
+                <p className="card-text">Distance : {parseInt(cinema.fields.dist)} mètres</p>
                 <p className="card-text">{cinema.fields.tranche_d_entrees}</p>
                 <p className="card-text">{cinema.fields.fauteuils} fauteuils</p>
                 <p className="card-text">{cinema.fields.ecrans} écrans</p>

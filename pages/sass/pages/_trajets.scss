@@ -9,7 +9,6 @@
     cursor:pointer; 
     &:hover{
         background-color:green;
-        transition:all 1s ease-in-out;
     }
 }
 .trajet-horaire{
@@ -25,8 +24,4 @@
 .section{
     padding-block:10px;
     display:block !important;
-    // flex-direction:column;
 }
-// .trajet_commercialMode{
-//     display:block;
-// }

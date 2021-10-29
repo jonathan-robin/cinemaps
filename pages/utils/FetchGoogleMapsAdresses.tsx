@@ -35,6 +35,7 @@ function fetchGoogleMapsAdresses(response_adresses:responseAdresses[], zoom:numb
             }); 
       })
     });
+    break;
     case 'itineraire':
       console.log('itineraire')
       loader.load().then(() => {
@@ -42,10 +43,9 @@ function fetchGoogleMapsAdresses(response_adresses:responseAdresses[], zoom:numb
           center: { lng:parseFloat(itineraire[0].lng), lat: parseFloat(itineraire[0].lat) },
           zoom
         });
-        // const flightPlanCoordinates = [
-        //     itineraire
-        // ];
+
         flightPath = new google.maps.Polyline({
+          // On passe les geojson coodrinates
           path: itineraire,
           geodesic: true,
           strokeColor: "#FF0000",
@@ -54,6 +54,9 @@ function fetchGoogleMapsAdresses(response_adresses:responseAdresses[], zoom:numb
         });
         flightPath.setMap(map);
     });
+    break;
+    default:
+      console.log('Default switch FetchGM')
   }
 }
 

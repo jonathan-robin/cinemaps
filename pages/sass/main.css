@@ -12184,8 +12184,6 @@ legend {
 
 .trajet-container:hover {
   background-color: green;
-  -webkit-transition: all 1s ease-in-out;
-  transition: all 1s ease-in-out;
 }
 
 .trajet-horaire {

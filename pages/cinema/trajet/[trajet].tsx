@@ -1,43 +1,44 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import React from "react";
-import Header from "../../components/utils/Header";
+import React, { useContext } from "react";
 import { positions } from "../../interfaces/interfaces";
 import GetCommercialMode from "../../utils/GetCommercialMode";
 import { display_info, display_infos_walking } from "../../interfaces/interfaces";
 import { useRouter } from "next/router";
+import HeaderBack from "../../components/utils/HeaderBack";
+import {AppContext} from '../../context/sectionsContext';
 
-function trajet(trajets: any) {
+function trajet(trajets: any, ) {
   const router = useRouter();
+  const [sectionsState, setSectionsState] = useContext(AppContext);
 
   // sections: array des sections -> sections.geojson.coordinates : array des coordonnées
   const HandleOnClickItineraire = (sections:any) => {
+    setSectionsState(sections);
     let itineraire:any[]=[];
     sections.map((section:any, index:number) => {
       itineraire.push([section.geojson.coordinates]);
     })
-    console.log(itineraire);
     router.push({pathname:`/cinema/itineraire/${itineraire}`})
   }
 
   return (
     <div>
-      <Header />
+      <HeaderBack />
       Choisissez un trajet pour accéder aux détails
       {trajets.trajets.journeys.map((trajet: any, index: number) => {
         // Formate l'arrivé en 00h00
-        var horaire_depart:string= `${trajet.departure_date_time.split("T")[1].slice(0,2)}h${trajet.departure_date_time.split("T")[1].slice(2,4)}`;
-        var horaire_arrivee:string= `${trajet.arrival_date_time.split("T")[1].slice(0,2)}h${trajet.arrival_date_time.split("T")[1].slice(2,4)}`; 
-
-// Passe trajet.sections = [section] -> [section].map((section) => section.geojson.coordinates : [])
-
+        var trajetHoraire = {horaire_depart: `${trajet.departure_date_time.split("T")[1].slice(0,2)}h${trajet.departure_date_time.split("T")[1].slice(2,4)}`,
+                              horaire_arrivee: `${trajet.arrival_date_time.split("T")[1].slice(0,2)}h${trajet.arrival_date_time.split("T")[1].slice(2,4)}`,
+                              trajetDuration : parseInt((trajet.duration / 60).toString())}
+        // On supprime les sections waiting
+        var sections = trajet.sections.filter((section:any) => section.type !== "waiting" );
         return (
-          <div className="trajet-container" onClick={() => HandleOnClickItineraire(trajet.sections)}>
+          <div className="trajet-container" onClick={() => HandleOnClickItineraire(sections)}>
             <div className="trajet-horaire">
-              Départ à {horaire_depart} - Arrivée à {horaire_arrivee} <small>~{parseInt((trajet.duration / 60).toString())} minutes</small>
+              Départ à {trajetHoraire.horaire_depart} - Arrivée à {trajetHoraire.horaire_arrivee} <small>~{trajetHoraire.trajetDuration} minutes</small>
             </div>
             <div className="sections">
-                {/* {trajet.sections.length - 1} changements : <br/> */}
-                {trajet.sections.map((section:any, index:number)=> {
+                {sections.map((section:any, index:number)=> {
                     let display_info:display_info= { mode:'', 
                     colorLine:'', 
                     Line:'',
@@ -68,7 +69,7 @@ function trajet(trajets: any) {
                   try{
                   display_infos_walking.mode = 'A pied';
                   display_infos_walking.duration = parseInt((section.duration / 60 ).toString()); 
-                  try{display_infos_walking.geojson = section.geojson.coordinates}catch{console.log('error geojson walking:' + section)};
+                  display_infos_walking.geojson = section.geojson.coordinates;
                   return (
                     <div className="section" style={{display:'flex'}}>
                    - <b>{display_infos_walking.mode}</b> - Depuis <code>{section.from.name}</code> vers <code>{section.to.name}</code> <small> ~{display_infos_walking.duration}minutes</small>

@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React,{useState, useEffect,useRef, ChangeEvent} from 'react'
+import React,{useState, useEffect,useRef, ChangeEvent, useCallback} from 'react'
 import Header from './components/utils/Header'; 
 import { positions, adresseInfos} from './interfaces/interfaces';
 import HandleClickFetchCinema from './utils/HandleClickFetchCinema';
@@ -22,7 +22,7 @@ function Cinema() {
         let q = e.currentTarget.value
         setAdresse(e.currentTarget.value);
         // Recup les options pour le completion de l'adresse
-        const p = await fetch(`https://api-adresse.data.gouv.fr/search/?q=${q}&city=paris`)
+        const p = await fetch(`https://api-adresse.data.gouv.fr/search/?q=${q}&city=Paris`)
         const res = await p.json(); 
         var adresses: adresseInfos[] = [];
         const res_1 =
@@ -55,8 +55,8 @@ function Cinema() {
 
     return (
         <div>
-        <Header />
-        <div className="card">
+          <Header />
+          <div className="card">
           <img
             className="card-img-top"
             src="https://picsum.photos/200/200"
