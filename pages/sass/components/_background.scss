@@ -1,0 +1,19 @@
+.background-poster{
+    position:absolute; 
+    display:grid; 
+    grid-template-columns: 20vw repeat(auto-fill, 20vw);
+    top:0; 
+    left:0;
+    width:100vw; 
+    height:100vh; 
+    overflow:hidden;
+    @media (max-width:1000px){
+        grid-template-columns: repeat(5, 1fr)
+    }
+}   
+.posterImg{ 
+    width:20vw;
+    @media (max-width:1000px){
+        width:200px;
+    }
+}

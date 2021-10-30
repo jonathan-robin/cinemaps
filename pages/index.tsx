@@ -1,15 +1,16 @@
 import type { NextPage } from "next";
 import "bootswatch/dist/cyborg/bootstrap.min.css";
 import Header from "./components/utils/Header";
-import { useState, useEffect, useRef, ChangeEvent} from "react";
+import React, { useState, useEffect, useRef, ChangeEvent, Suspense} from "react";
 import HandleClickFetchData from "./utils/HandleClickFetchData";
 import { useRouter } from "next/router";
+import Background from "./components/utils/Background";
 
 const Home: NextPage = () => {
   const [inputValue, setInputValue] = useState<string>('22 rue des olives');
   const inputRef = useRef<HTMLInputElement>(null); 
   const router = useRouter();
-
+ 
   useEffect(() => {
       inputRef.current?.focus()
   },[])
@@ -27,6 +28,7 @@ const Home: NextPage = () => {
 
   return (
     <div>
+      <Background />
       <Header />
       <div className="card">
         <img
