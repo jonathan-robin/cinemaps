@@ -1,12 +1,11 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import React, { useContext, useEffect } from "react";
-import { positions, responseAdresses, display_info, display_infos_walking } from "../../interfaces/interfaces";
-import fetchGoogleMapsAdresses from "../../utils/FetchGoogleMapsAdresses";
-import GoogleMap from "../../GoogleMap";
-import HeaderBack from "../../components/utils/HeaderBack";
-import GetCommercialMode from "../../utils/GetCommercialMode";
-import {AppContext} from '../../context/sectionsContext';
-
+import { positions, responseAdresses, display_info, display_infos_walking } from "../../../interfaces/interfaces";
+import fetchGoogleMapsAdresses from "../../../utils/FetchGoogleMapsAdresses";
+import GoogleMap from "../../../GoogleMap";
+import GetCommercialMode from "../../../utils/GetCommercialMode";
+import {AppContext} from '../../../context/sectionsContext';
+import Header from "../../../components/utils/Header";
 
 function itineraire({ itineraire}: any) {
   const [sectionsState, setSectionsState] = useContext(AppContext);
@@ -30,10 +29,10 @@ function itineraire({ itineraire}: any) {
   }, []);
 
   return (
-    <body>
+    <div className="trajets--modal">
       <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
       <div>
-        <HeaderBack />
+        <Header />
         <GoogleMap />
         <div className="trajet-container">
             <div className="sections">
@@ -84,7 +83,7 @@ function itineraire({ itineraire}: any) {
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSDVQSUseV6HHZF6YLG4YfmsBPA0sA4qw&callback=initMap&v=weekly"
         async
       ></script>
-    </body>
+    </div>
   );
 }
 

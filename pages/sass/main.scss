@@ -2,9 +2,13 @@
 @import "../../node_modules/bootstrap/scss/bootstrap";
 @import "../../node_modules/bootswatch/dist/cyborg/bootswatch";
 
+@import './variables/_variables';
+
 @import './components/_card.scss';
 @import './components/_autocompletion.scss';
 @import './components/_background.scss';
+@import './components/_header.scss';
+@import './components/_loading.scss';
 
 @import './pages/_index.scss';
 @import './pages/_trajets.scss';

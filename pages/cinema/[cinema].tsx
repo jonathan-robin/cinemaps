@@ -1,14 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import Header from '../components/utils/Header';
-import HeaderBack from '../components/utils/HeaderBack';
 import fetchGoogleMapsAdresses from '../utils/FetchGoogleMapsAdresses';
 import { positions } from '../interfaces/interfaces';
 import { useRouter } from 'next/router';
 import GoogleMap from '../GoogleMap';
+import Loading from '../components/utils/Loading';
 
 function Cinema({response_adress, userAdress}:InferGetStaticPropsType<typeof getStaticProps>) {
     var response_cinemas:any = [];
+    const [loading, setLoading] = useState<boolean>(false);
     const router = useRouter();
     // zoom de googleMaps
     const zoom = 12;
@@ -21,6 +22,7 @@ function Cinema({response_adress, userAdress}:InferGetStaticPropsType<typeof get
 
     // on push [trajet] avec coordonnées du user et du cinema cliqué
     const handleOnClick = async (cinemaAdress:number[], userAdress:positions) => {
+        setLoading(true);
         router.push({pathname:`/cinema/trajet/${cinemaAdress}%2C+${userAdress.lng},${userAdress.lat}`})
     }
 
@@ -28,14 +30,16 @@ function Cinema({response_adress, userAdress}:InferGetStaticPropsType<typeof get
         <body>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
         <div>
-            <HeaderBack />
+            <Header />
+            {loading ? <Loading /> : 
+            <>
+               <h3 className='CardClic'>Cliquez sur une card pour avoir accès à l'itinéraire</h3>
             <GoogleMap />
-                <h3 className='CardClic'>Cliquez sur une card pour avoir accès à l'itinéraire</h3>
             <div className="container__adresses">
         {response_cinemas.map((cinema:any, index:any)=>{
           return (
             //   OnClick renvoit l'itinéraire
-            <div className="card text-white bg-primary mb-3 cardCinema" style={{maxWidth:'20rem'}}
+            <div className="text-white mb-3 cardCinema" style={{maxWidth:'20rem'}}
             onClick={() => handleOnClick(cinema.geometry.coordinates, userAdress)}>
               <div className="card-header">{cinema.fields.adresse}</div>
               <div className="card-body">
@@ -49,7 +53,8 @@ function Cinema({response_adress, userAdress}:InferGetStaticPropsType<typeof get
             </div>
           )
         })}
-        </div>
+        </div></>
+}
         </div>
         <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSDVQSUseV6HHZF6YLG4YfmsBPA0sA4qw&callback=initMap&v=weekly"

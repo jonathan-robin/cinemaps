@@ -1,18 +1,21 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { positions } from "../../interfaces/interfaces";
 import GetCommercialMode from "../../utils/GetCommercialMode";
 import { display_info, display_infos_walking } from "../../interfaces/interfaces";
 import { useRouter } from "next/router";
-import HeaderBack from "../../components/utils/HeaderBack";
 import {AppContext} from '../../context/sectionsContext';
+import Header from "../../components/utils/Header";
+import Loading from "../../components/utils/Loading";
 
 function trajet(trajets: any, ) {
   const router = useRouter();
   const [sectionsState, setSectionsState] = useContext(AppContext);
+  const [loading, setLoading] = useState<boolean>(false);
 
   // sections: array des sections -> sections.geojson.coordinates : array des coordonnées
   const HandleOnClickItineraire = (sections:any) => {
+    setLoading(true);
     setSectionsState(sections);
     let itineraire:any[]=[];
     sections.map((section:any, index:number) => {
@@ -23,8 +26,11 @@ function trajet(trajets: any, ) {
 
   return (
     <div>
-      <HeaderBack />
+      <Header />
+      {loading ? <Loading /> : 
+      <>
       Choisissez un trajet pour accéder aux détails
+      <div className='trajets'>
       {trajets.trajets.journeys.map((trajet: any, index: number) => {
         // Formate l'arrivé en 00h00
         var trajetHoraire = {horaire_depart: `${trajet.departure_date_time.split("T")[1].slice(0,2)}h${trajet.departure_date_time.split("T")[1].slice(2,4)}`,
@@ -82,6 +88,9 @@ function trajet(trajets: any, ) {
           </div>
         );
       })}
+      </div>
+      </>
+       }
     </div>
   );
 }

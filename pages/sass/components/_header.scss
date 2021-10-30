@@ -1,0 +1,27 @@
+.header {
+    display:flex;
+    height:80px; 
+    background:black;
+    z-index:1000;
+    position:fixed; 
+    width:100vw;
+    box-shadow:2px 2px 20px white;
+}   
+.cinemaps-cine{
+    height:80px; 
+    align-items:center; 
+    display:flex;
+    width:fit-content;
+    margin-inline:auto;
+    color:white; 
+    font-size:60px;
+    font-family:$font-family--title;
+}
+.cinemaps-cine::after{
+    content:'Maps';
+    color:rgb(209, 137, 2); 
+}
+a {
+    text-decoration:none !important; 
+    color:white !important;
+}

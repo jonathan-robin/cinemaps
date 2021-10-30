@@ -8,7 +8,13 @@
     padding: 15px;
     cursor:pointer; 
     &:hover{
-        background-color:green;
+        background-color:rgb(209, 137, 2)!important;
+        .trajet-horaire{
+            color:black; 
+        }
+        .sections{
+            color:black; 
+        }
     }
 }
 .trajet-horaire{
@@ -24,4 +30,24 @@
 .section{
     padding-block:10px;
     display:block !important;
+}
+#map{
+    width:80vw !important;
+}
+.trajets--modal .header{
+    position:inherit !important;
+}
+
+.trajets--modal{
+    .trajet-container{
+        &:hover{
+            background-color:white !important;
+            .trajet-horaire{
+                color:inherit !important; 
+            }
+            .sections{
+                color:inherit !important; 
+            }
+        }
+    }
 }

@@ -10,10 +10,43 @@
     @media (max-width:1000px){
         grid-template-columns: repeat(5, 1fr)
     }
+    &:before{ 
+        content:''; 
+        position:absolute; 
+        top:0; 
+        left:0; 
+        width:100vw; 
+        height:100vh; 
+        background-color:rgba(0,0,0,0.4);
+    }
 }   
+.background__card .card{ 
+    min-width:300px;
+}
+.trajets{
+    margin-inline:25px;
+    margin-top: 15vh;
+}
 .posterImg{ 
     width:20vw;
     @media (max-width:1000px){
         width:200px;
+    }
+}
+.background__card{
+    animation:loading 1800ms ease-in forwards;
+}
+.remove{
+    opacity:0 !important;
+}
+@keyframes loading {
+    0%{ 
+        opacity:0; 
+    }
+    90%{
+        opacity:0; 
+    }
+    100%{
+        opacity:1;
     }
 }

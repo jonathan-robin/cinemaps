@@ -12123,9 +12123,49 @@ legend {
   border-bottom: none;
 }
 
+@font-face {
+  font-family: "Ubuntu-light";
+  src: url("./fonts/ubuntu/Ubuntu-Light.ttf");
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url("./fonts/ubuntu/Ubuntu-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Ubuntu-medium";
+  src: url("./fonts/ubuntu/Ubuntu-Medium.ttf");
+}
+
+@font-face {
+  font-family: "Ubuntu-bold";
+  src: url("./fonts/ubuntu/Ubuntu-Bold.ttf");
+}
+
 .card {
-  width: 18rem;
+  width: 25vw;
   margin-inline: auto;
+  position: absolute !important;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: rgba(214, 214, 214, 0.925) !important;
+  padding: 15px;
+  text-align: center;
+}
+
+.card-title {
+  color: #d18902;
+  font-family: "Ubuntu-medium";
+  font-size: 40px !important;
+}
+
+.card-text {
+  color: black;
+  font-size: 18px;
+  font-family: "Ubuntu";
 }
 
 .btn-fetch-data {
@@ -12136,16 +12176,32 @@ legend {
 }
 
 .cardCinema {
+  border-radius: 15px;
+  position: relative !important;
+  background-color: #cecece !important;
   cursor: pointer;
 }
 
 .cardCinema:hover {
-  background: green !important;
+  background: #d18902 !important;
+}
+
+.cardCinema:hover .card-title {
+  color: black;
 }
 
 .CardClic {
   padding: 25px;
+  color: #d18902 !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   margin-inline: auto;
+  padding-top: 120px;
+  padding-bottom: 20px;
 }
 
 .trajet {
@@ -12153,6 +12209,24 @@ legend {
   display: -ms-flexbox;
   display: flex;
   padding: 25px;
+}
+
+.button__rechercheCinema {
+  margin: 15px !important;
+  background-color: #d18902 !important;
+  border-color: black !important;
+  color: black !important;
+  font-family: "Ubuntu-medium" !important;
+  -webkit-transition: all 0.5s ease-in-out !important;
+  transition: all 0.5s ease-in-out !important;
+}
+
+.button__rechercheCinema:hover {
+  border-color: #d18902 !important;
+  background-color: black !important;
+  -webkit-transition: all 0.5s ease-in-out !important;
+  transition: all 0.5s ease-in-out !important;
+  color: #d18902 !important;
 }
 
 .result-autocompletion--codePostal {
@@ -12165,7 +12239,7 @@ legend {
 }
 
 .result-autocompletion--codePostal:hover {
-  background: #afaeae;
+  background-color: #d18902 !important;
 }
 
 .background-poster {
@@ -12188,6 +12262,25 @@ legend {
   }
 }
 
+.background-poster:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.background__card .card {
+  min-width: 300px;
+}
+
+.trajets {
+  margin-inline: 25px;
+  margin-top: 15vh;
+}
+
 .posterImg {
   width: 20vw;
 }
@@ -12195,6 +12288,201 @@ legend {
 @media (max-width: 1000px) {
   .posterImg {
     width: 200px;
+  }
+}
+
+.background__card {
+  -webkit-animation: loading 1800ms ease-in forwards;
+          animation: loading 1800ms ease-in forwards;
+}
+
+.remove {
+  opacity: 0 !important;
+}
+
+@-webkit-keyframes loading {
+  0% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes loading {
+  0% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 80px;
+  background: black;
+  z-index: 1000;
+  position: fixed;
+  width: 100vw;
+  -webkit-box-shadow: 2px 2px 20px white;
+          box-shadow: 2px 2px 20px white;
+}
+
+.cinemaps-cine {
+  height: 80px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-inline: auto;
+  color: white;
+  font-size: 60px;
+  font-family: "Ubuntu-bold";
+}
+
+.cinemaps-cine::after {
+  content: 'Maps';
+  color: #d18902;
+}
+
+a {
+  text-decoration: none !important;
+  color: white !important;
+}
+
+.LoadingScreen {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  z-index: 10000;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.ring {
+  z-index: 10000;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  font-size: 20px;
+  letter-spacing: 4px;
+  text-shadow: 0 0 10px black;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  line-height: 150px;
+  background: transparent;
+  border: 3px solid transparent;
+  border-radius: 50%;
+  z-index: 1000;
+}
+
+.ring::before {
+  content: '';
+  position: absolute !important;
+  top: -3px;
+  left: -3.5px;
+  width: 105%;
+  height: 105%;
+  border: 3px solid transparent;
+  border-top: 4px solid #d18902 !important;
+  border-right: 4px solid #d18902 !important;
+  -webkit-box-shadow: 0 0 5px #d18902 !important;
+          box-shadow: 0 0 5px #d18902 !important;
+  border-radius: 50%;
+  -webkit-animation: looping 2s linear infinite;
+          animation: looping 2s linear infinite;
+  z-index: 10000;
+}
+
+.spanRing {
+  display: block;
+  position: absolute;
+  top: calc(50% - 2px);
+  left: 50%;
+  width: 50%;
+  height: 4px;
+  background: transparent;
+  -webkit-transform-origin: left;
+          transform-origin: left;
+  -webkit-animation: looping-2 2s linear infinite;
+          animation: looping-2 2s linear infinite;
+  z-index: 10000;
+}
+
+.spanRing::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #d18902 !important;
+  top: -8px;
+  right: -8px;
+  -webkit-box-shadow: 0 0 5px #d18902 !important;
+          box-shadow: 0 0 5px #d18902 !important;
+  z-index: 10000;
+}
+
+@-webkit-keyframes looping-2 {
+  0% {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+  }
+  100% {
+    -webkit-transform: rotate(405deg);
+            transform: rotate(405deg);
+  }
+}
+
+@keyframes looping-2 {
+  0% {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+  }
+  100% {
+    -webkit-transform: rotate(405deg);
+            transform: rotate(405deg);
+  }
+}
+
+@-webkit-keyframes looping {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes looping {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
   }
 }
 
@@ -12213,7 +12501,15 @@ legend {
 }
 
 .trajet-container:hover {
-  background-color: green;
+  background-color: #d18902 !important;
+}
+
+.trajet-container:hover .trajet-horaire {
+  color: black;
+}
+
+.trajet-container:hover .sections {
+  color: black;
 }
 
 .trajet-horaire {
@@ -12234,6 +12530,26 @@ legend {
   display: block !important;
 }
 
+#map {
+  width: 80vw !important;
+}
+
+.trajets--modal .header {
+  position: inherit !important;
+}
+
+.trajets--modal .trajet-container:hover {
+  background-color: white !important;
+}
+
+.trajets--modal .trajet-container:hover .trajet-horaire {
+  color: inherit !important;
+}
+
+.trajets--modal .trajet-container:hover .sections {
+  color: inherit !important;
+}
+
 .container__adresses {
   display: -ms-grid !important;
   display: grid !important;
@@ -12247,7 +12563,7 @@ legend {
 
 #map {
   height: 400px !important;
-  width: 800px !important;
+  max-width: 800px !important;
   position: relative;
   margin-inline: auto;
   margin-block: 30px;
