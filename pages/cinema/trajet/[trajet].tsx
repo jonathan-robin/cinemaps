@@ -122,7 +122,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     `https://api.navitia.io/v1/journeys?from=${cinemaGeo.lat};${cinemaGeo.lng}&to=${userGeo.lat};${userGeo.lng}`,
     {
       headers: {
-        Authorization: "Basic " + btoa("0fbd3e70-5d3c-4d75-adfd-dbc6c821d560:"),
+        Authorization: "Basic 0fbd3e70-5d3c-4d75-adfd-dbc6c821d560:",
       },
     }
   );
