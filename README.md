@@ -1,34 +1,64 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CINEMAPS
+Web application that let you choose between differents paths(public transport and walking) from a Parisian adress to a choosen near theater. 
 
-## Getting Started
+![cinemaps_gif](https://user-images.githubusercontent.com/63792769/139593694-0d57b337-ad86-4e17-af5f-07067bea833f.gif)
 
-First, run the development server:
+Once your adress is selected you choose one of the 10 nearest displayed theater. Once the theater selected you select the path you prefer. The web app display the path on a map and give you the details.
 
-```bash
-npm run dev
-# or
-yarn dev
+Link to the [live version](https://cinemaps.vercel.app/).
+
+### Built with 
+
+[React.js](https://fr.reactjs.org/)\
+[Next.js](https://fr.reactjs.org/)\
+[Sass](https://sass-lang.com)
+
+## APIs
+
+[Adresse](https://adresse.data.gouv.fr/api-doc/adresse) - Public API for french adress\
+[Navitia](http://doc.navitia.io/) - Public API for Ile-de-France public transport\
+[Cinemas](https://data.culture.gouv.fr/explore/dataset/etablissements-cinematographiques/api/) - Public API for Cinemas in France\
+[MovieDB](https://www.themoviedb.org/documentation/api?language=fr) - Public API for movies\
+[GoogleMaps](https://developers.google.com/maps/documentation/javascript/overview?hl=fr) - GoogleMaps API
+
+## Getting started
+This is a project built with create-next-app
+
+### Prerequisities & installation
+Once the repo clone with
+
+```
+git clone https://github.com/jonathan-robin/cinemaps.git
+```
+if not already installed, install npm 
+```
+npm install npm@latest -g
+```
+then install the project packages
+```
+npm install
+```
+To run the dev server, run
+```
+npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Usage
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Get free API keys for each API you want to use and put it in a ```.env``` file at the root.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Contributing
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Any contributions you make are greatly appreciated.
 
-## Learn More
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Fork the Project\
+Create your Feature Branch (```git checkout -b feature/AmazingFeature```)\
+Commit your Changes (```git commit -m 'Add some AmazingFeature'```)\
+Push to the Branch (```git push origin feature/AmazingFeature```)\
+Open a Pull Request
+## Contact
+Jonathan ROBIN - contact@jonathan-robin.com\
+https://www.jonathan-robin.com \
+https://www.github.com/jonathan-robin
