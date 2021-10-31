@@ -37,7 +37,6 @@ function fetchGoogleMapsAdresses(response_adresses:responseAdresses[], zoom:numb
     });
     break;
     case 'itineraire':
-      console.log('itineraire')
       loader.load().then(() => {
         map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
           center: { lng:parseFloat(itineraire[0].lng), lat: parseFloat(itineraire[0].lat) },

@@ -39,7 +39,7 @@ function Cinema({response_adress, userAdress}:InferGetStaticPropsType<typeof get
         {response_cinemas.map((cinema:any, index:any)=>{
           return (
             //   OnClick renvoit l'itinéraire
-            <div className="text-white mb-3 cardCinema" style={{maxWidth:'20rem'}}
+            <div className="text-white mb-3 cardCinema" style={{maxWidth:'20rem'}} key={index}
             onClick={() => handleOnClick(cinema.geometry.coordinates, userAdress)}>
               <div className="card-header">{cinema.fields.adresse}</div>
               <div className="card-body">
@@ -57,7 +57,7 @@ function Cinema({response_adress, userAdress}:InferGetStaticPropsType<typeof get
 }
         </div>
         <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSDVQSUseV6HHZF6YLG4YfmsBPA0sA4qw&callback=initMap&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSDVQSUseV6HHZF6YLG4YfmsBPA0sA4qw&v=weekly"
       async
     ></script>
         </body>

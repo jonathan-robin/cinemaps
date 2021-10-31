@@ -7,7 +7,7 @@ const Background = React.memo(function Background() {
  //Récuperer poster pour le background  
  const fetchPoster = async (callback:any) => {
    var res:string[] = [];
-   let idPosters = new Array(25).fill(null);
+   let idPosters = new Array(30).fill(null);
    // Pas de feature pour requêter plusieurs id en une requête
    idPosters.map(async (poster, index) => {
      let status = 401; 
@@ -19,7 +19,6 @@ const Background = React.memo(function Background() {
      }
      // On retourne le callback quand on arrive a la fin du tableau
      if (index === idPosters.length - 1){
-       console.log('return')
        return callback(res);
      } 
    })
@@ -35,9 +34,8 @@ const Background = React.memo(function Background() {
     return (
         <div className='background-poster'>
         {posters && posters.map((poster:any, index:number) => {
-          console.log(poster.poster_path)
            return (
-           <div className='poster'>
+           <div className='poster' key={index}>
              <img src={(`https://image.tmdb.org/t/p/original/${poster.poster_path}`)} className='posterImg'/>
              </div>
              )

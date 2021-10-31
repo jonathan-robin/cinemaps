@@ -39,6 +39,9 @@
 }
 
 .trajets--modal{
+    .header{
+        width:inherit !important;
+    }
     .trajet-container{
         &:hover{
             background-color:white !important;

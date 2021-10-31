@@ -12538,6 +12538,10 @@ a {
   position: inherit !important;
 }
 
+.trajets--modal .header {
+  width: inherit !important;
+}
+
 .trajets--modal .trajet-container:hover {
   background-color: white !important;
 }

@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { positions } from "../../interfaces/interfaces";
 import GetCommercialMode from "../../utils/GetCommercialMode";
 import { display_info, display_infos_walking } from "../../interfaces/interfaces";
@@ -13,15 +13,19 @@ function trajet(trajets: any, ) {
   const [sectionsState, setSectionsState] = useContext(AppContext);
   const [loading, setLoading] = useState<boolean>(false);
 
+
+
+
   // sections: array des sections -> sections.geojson.coordinates : array des coordonnées
   const HandleOnClickItineraire = (sections:any) => {
+    localStorage.setItem('sections', JSON.stringify(sections))
     setLoading(true);
     setSectionsState(sections);
     let itineraire:any[]=[];
     sections.map((section:any, index:number) => {
       itineraire.push([section.geojson.coordinates]);
     })
-    router.push({pathname:`/cinema/itineraire/${itineraire}`})
+    router.push({pathname:`/cinema/trajet/itineraire/${itineraire}`})
   }
 
   return (
@@ -39,7 +43,7 @@ function trajet(trajets: any, ) {
         // On supprime les sections waiting
         var sections = trajet.sections.filter((section:any) => section.type !== "waiting" );
         return (
-          <div className="trajet-container" onClick={() => HandleOnClickItineraire(sections)}>
+          <div className="trajet-container" key={index} onClick={() => HandleOnClickItineraire(sections)}>
             <div className="trajet-horaire">
               Départ à {trajetHoraire.horaire_depart} - Arrivée à {trajetHoraire.horaire_arrivee} <small>~{trajetHoraire.trajetDuration} minutes</small>
             </div>
@@ -58,7 +62,7 @@ function trajet(trajets: any, ) {
                 if (section.display_informations){
                   display_info = GetCommercialMode(section.display_informations, section.duration);
                   return (
-                  <div className="section" style={{display:'flex'}}>
+                  <div className="section" style={{display:'flex'}} key={index} >
                   - <b>{display_info.mode}</b> - Depuis {section.from.name} vers {section.to.name} <small>{" "}~{display_info.duration} min</small>
                    <div className='trajet_commercialMode' style={{display:'flex'}}>
                       <div className='colorLine' style={{backgroundColor:display_info.colorLine}}>
@@ -72,16 +76,14 @@ function trajet(trajets: any, ) {
                 // Si c'est à pied
                 else if (section.mode = 'walking'){
                   // todos: quand type=waiting pour attendre un transport, mode=walking
-                  try{
                   display_infos_walking.mode = 'A pied';
                   display_infos_walking.duration = parseInt((section.duration / 60 ).toString()); 
                   display_infos_walking.geojson = section.geojson.coordinates;
                   return (
-                    <div className="section" style={{display:'flex'}}>
+                    <div className="section" style={{display:'flex'}} key={index}>
                    - <b>{display_infos_walking.mode}</b> - Depuis <code>{section.from.name}</code> vers <code>{section.to.name}</code> <small> ~{display_infos_walking.duration}minutes</small>
                 </div>
                 )
-                  }catch{console.log(section)}
               }
                 })}
             </div> 
