@@ -102,7 +102,7 @@ export default trajet;
 export const getStaticPaths: GetStaticPaths = async (context) => {
   console.log(`Building slug: ${context}`)
   return {
-    paths: [{ params: {trajet: "2.399555,48.8647632.4022,48.876538" } }],
+    paths: [{ params: {trajet: "2.399555,48.8647632+2.4022,48.876538" } }],
     fallback: "blocking",
   };
 };

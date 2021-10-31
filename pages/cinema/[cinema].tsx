@@ -68,7 +68,7 @@ export const getStaticPaths:GetStaticPaths = async (context) => {
   console.log(`Building slug: ${context}`)
     return ({ 
         paths:[
-            { params: { cinema : "48.60,2.48"}}
+            { params: { cinema : "48.60,+2.48"}}
         ], 
         fallback:'blocking'
     })
