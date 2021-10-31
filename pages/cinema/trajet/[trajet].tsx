@@ -102,7 +102,7 @@ export default trajet;
 export const getStaticPaths: GetStaticPaths = async (context) => {
   console.log(`Building slug: ${context}`)
   return {
-    paths: [{ params: {trajet: "2.399555,48.864763+2.4022,48.876538" } }],
+    paths: [{ params: {trajet: "2.399555,48.8647632.4022,48.876538" } }],
     fallback: "blocking",
   };
 };
@@ -119,12 +119,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   };
 
   const p = await fetch(
-    `https://api.navitia.io/v1/journeys?from=${cinemaGeo.lat};${cinemaGeo.lng}&to=${userGeo.lat};${userGeo.lng}`,
-    {
-      headers: {
-        Authorization: "Basic 0fbd3e70-5d3c-4d75-adfd-dbc6c821d560:",
-      },
-    }
+    `https://0fbd3e70-5d3c-4d75-adfd-dbc6c821d560@api.navitia.io/v1/journeys?from=${cinemaGeo.lat};${cinemaGeo.lng}&to=${userGeo.lat};${userGeo.lng}`,
   );
   const res = await p.json();
 
