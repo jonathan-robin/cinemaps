@@ -3,7 +3,6 @@ import React, {
   useState,
   useEffect,
   ChangeEvent,
-  SetStateAction,
 } from "react";
 
 function CodePostalAutoCompletion(props: {

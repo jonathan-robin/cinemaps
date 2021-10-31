@@ -1,8 +1,8 @@
-import React,{useRef, useState, useEffect, ChangeEvent} from 'react'; 
-import AdresseAutoCompletion from './components/autcompletion/AdresseAutoCompletion';
-import CodePostalAutoCompletion from './components/autcompletion/CodePostalAutoCompletion';
-import VilleAutoCompletion from './components/autcompletion/VilleAutoCompletion';
-import Header from './components/utils/Header';
+import React,{useRef, useState, useEffect} from 'react'; 
+import AdresseAutoCompletion from './AdresseAutoCompletion';
+import CodePostalAutoCompletion from './CodePostalAutoCompletion';
+import VilleAutoCompletion from './VilleAutoCompletion';
+import Header from '../components/utils/Header';
 
 function Autocompletion() {
     const inputRef = useRef<HTMLInputElement>(null); 

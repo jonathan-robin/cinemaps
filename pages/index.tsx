@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router';
-import React,{useState, useEffect,useRef, ChangeEvent, useCallback} from 'react'
-import Background from './components/utils/Background';
-import Header from './components/utils/Header'; 
-import Loading from './components/utils/Loading';
-import { positions, adresseInfos} from './interfaces/interfaces';
-import HandleClickFetchCinema from './utils/HandleClickFetchCinema';
+import React,{useState, useEffect,useRef, ChangeEvent} from 'react'
+import Background from '../components/utils/Background';
+import Header from '../components/utils/Header'; 
+import Loading from '../components/utils/Loading';
+import { positions, adresseInfos} from '../interfaces/interfaces';
+import HandleClickFetchCinema from '../utils/HandleClickFetchCinema';
 
 function Cinema() {
     const inputRef = useRef<HTMLInputElement>(null); 

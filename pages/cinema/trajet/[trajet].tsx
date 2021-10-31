@@ -1,12 +1,12 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import React, { useContext, useState, useEffect } from "react";
-import { positions } from "../../interfaces/interfaces";
-import GetCommercialMode from "../../utils/GetCommercialMode";
-import { display_info, display_infos_walking } from "../../interfaces/interfaces";
+import React, { useContext, useState } from "react";
+import { positions } from "../../../interfaces/interfaces";
+import GetCommercialMode from "../../../utils/GetCommercialMode";
+import { display_info, display_infos_walking } from "../../../interfaces/interfaces";
 import { useRouter } from "next/router";
-import {AppContext} from '../../context/sectionsContext';
-import Header from "../../components/utils/Header";
-import Loading from "../../components/utils/Loading";
+import {AppContext} from '../../../context/sectionsContext';
+import Header from "../../../components/utils/Header";
+import Loading from "../../../components/utils/Loading";
 
 function trajet(trajets: any, ) {
   const router = useRouter();
@@ -100,8 +100,9 @@ function trajet(trajets: any, ) {
 export default trajet;
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
+  console.log(`Building slug: ${context}`)
   return {
-    paths: [{ params: { trajet: "test" } }],
+    paths: [{ params: {trajet: "2.399555,48.864763+2.4022,48.876538" } }],
     fallback: "blocking",
   };
 };

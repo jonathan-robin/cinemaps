@@ -1,4 +1,3 @@
-import React from 'react'; 
 import {positions, responseAdresses, } from '../interfaces/interfaces';
 import { Loader } from "@googlemaps/js-api-loader"; 
 import * as dotenv from 'dotenv';

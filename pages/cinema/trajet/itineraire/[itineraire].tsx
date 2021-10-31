@@ -1,11 +1,11 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import React, { useContext, useEffect, useState } from "react";
-import { positions, responseAdresses, display_info, display_infos_walking } from "../../../interfaces/interfaces";
-import fetchGoogleMapsAdresses from "../../../utils/FetchGoogleMapsAdresses";
-import GoogleMap from "../../../GoogleMap";
-import GetCommercialMode from "../../../utils/GetCommercialMode";
-import {AppContext} from '../../../context/sectionsContext';
-import Header from "../../../components/utils/Header";
+import { positions, responseAdresses, display_info, display_infos_walking } from "../../../../interfaces/interfaces";
+import fetchGoogleMapsAdresses from "../../../../utils/FetchGoogleMapsAdresses";
+import GoogleMap from "../../../../utils/GoogleMap";
+import GetCommercialMode from "../../../../utils/GetCommercialMode";
+import {AppContext} from '../../../../context/sectionsContext';
+import Header from "../../../../components/utils/Header";
 
 function itineraire({ itineraire}: any) {
   const [sectionsState, setSectionsState] = useContext(AppContext);
@@ -95,8 +95,9 @@ function itineraire({ itineraire}: any) {
 export default itineraire;
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
+  console.log(`Building slug: ${context}`)
   return {
-    paths: [{ params: { itineraire: "test" }, 
+    paths: [{ params: { itineraire: "[[2.4022658594,48.8766155286],[2.402506,48.876062],[2.402538,48.875985],[2.402538,48.875985]]" }, 
                        }],
     fallback: "blocking",
   };

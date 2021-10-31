@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
-import Header from '../components/utils/Header';
-import fetchGoogleMapsAdresses from '../utils/FetchGoogleMapsAdresses';
-import { positions } from '../interfaces/interfaces';
+import Header from '../../components/utils/Header';
+import fetchGoogleMapsAdresses from '../../utils/FetchGoogleMapsAdresses';
+import { positions } from '../../interfaces/interfaces';
 import { useRouter } from 'next/router';
-import GoogleMap from '../GoogleMap';
-import Loading from '../components/utils/Loading';
+import GoogleMap from '../../utils/GoogleMap';
+import Loading from '../../components/utils/Loading';
 
 function Cinema({response_adress, userAdress}:InferGetStaticPropsType<typeof getStaticProps>) {
     var response_cinemas:any = [];
@@ -65,9 +65,10 @@ function Cinema({response_adress, userAdress}:InferGetStaticPropsType<typeof get
 }
 
 export const getStaticPaths:GetStaticPaths = async (context) => {
+  console.log(`Building slug: ${context}`)
     return ({ 
         paths:[
-            { params: { cinema : 'test'}}
+            { params: { cinema : "48.60,2.48"}}
         ], 
         fallback:'blocking'
     })

@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { display_info } from "../interfaces/interfaces";
 
 export type SectionsContext = [
@@ -35,30 +35,3 @@ export function AppWrapper({ children }:any) {
 export function useAppContext() {
   return useContext(AppContext);
 }
-
-// export const _SectionsContext = React.createContext<SectionsContext>([
-//   {    mode:'string', 
-//         colorLine:'string', 
-//         Line:'string',
-//         direction:'string',
-//         label:'string', 
-//         duration:0},
-//   () => null,
-// ]);
-
-// export const sectionsProvider: any = (props: any) => {
-//   const [sectionsState, setSectionsState] = useState<display_info>({
-//     mode:'string', 
-//     colorLine:'string', 
-//     Line:'string',
-//     direction:'string',
-//     label:'string', 
-//     duration:0
-//   });
-
-//   return (
-//     <_SectionsContext.Provider value={[sectionsState, setSectionsState]}>
-//       {props.children}
-//     </_SectionsContext.Provider>
-//   );
-// };
